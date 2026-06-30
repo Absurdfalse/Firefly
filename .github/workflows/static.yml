@@ -1,20 +1,14 @@
-# Simple workflow for deploying Astro static content to GitHub Pages
 name: Deploy static content to Pages
-
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["master"]
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -23,34 +17,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. 拉取代码
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. 配置Node + pnpm
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
+      # 关键缺失步骤：安装pnpm，解决找不到pnpm报错
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 9
 
-      # 3. 安装依赖
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
       - name: Install dependencies
         run: pnpm install
 
-      # 4. 构建Astro站点，注入图片API密钥
-      - name: Build Astro
+      - name: Build Astro site
         run: pnpm build
+        # 如果你有图片API密钥，在这里填入，无则删除env整段
         env:
-          # 替换成你本地.env里的图片API变量名，值在仓库Secrets里配置
           IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY }}
 
-      # 5. 上传打包产物dist文件夹
-      - name: Upload artifact
+      - name: Upload dist artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
