@@ -79,28 +79,28 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		children: [
 			{
 				name: "GitHub",
-				url: "https://github.com/CuteLeaf/Firefly",
+				url: "https://github.com/Absurdfalse",
 				external: true,
 				icon: "fa7-brands:github",
 			},
 			{
 				name: "Gitee",
-				url: "https://gitee.com/CuteLeaf/Firefly",
+				url: "https://gitee.com/Absurdfalse",
 				external: true,
 				icon: "fa7-brands:gitee",
 			},
 			{
-				name: "QQ交流群",
-				url: "https://qm.qq.com/q/ZGsFa8qX2G",
+				name: "我的QQ",
+				url: "https://qm.qq.com/q/rkK4FYwM4E",
 				external: true,
 				icon: "fa7-brands:qq",
 			},
-			{
-				name: "Firefly文档",
-				url: "https://docs-firefly.cuteleaf.cn",
-				external: true,
-				icon: "material-symbols:docs",
-			},
+			// {
+			// 	name: "Firefly文档",
+			// 	url: "https://docs-firefly.cuteleaf.cn",
+			// 	external: false,
+			// 	icon: "material-symbols:docs",
+			// },
 		],
 	});
 
@@ -165,7 +165,7 @@ export const LinkPresets: Record<string, NavBarLink> = {
 	},
 	About: {
 		name: "关于我",
-		url: "/about/",
+		url: "/about1/",
 		icon: "material-symbols:person",
 	},
 	Bangumi: {
