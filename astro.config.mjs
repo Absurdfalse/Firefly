@@ -24,7 +24,13 @@ import remarkAdmonitionToBlockquoteCallout from "remark-admonition-to-blockquote
 import remarkDirective from "remark-directive"; /* Handle directives */
 import remarkMath from "remark-math";
 import remarkSectionize from "remark-sectionize";
-import { expressiveCodeConfig, fontConfig, fontsList, plantumlConfig, siteConfig } from "./src/config";
+import {
+	expressiveCodeConfig,
+	fontConfig,
+	fontsList,
+	plantumlConfig,
+	siteConfig,
+} from "./src/config";
 import { collectUsedFontCssVars } from "./src/utils/fontHelper";
 import I18nKey from "./src/i18n/i18nKey";
 import { i18n } from "./src/i18n/translation";
@@ -70,13 +76,26 @@ export default defineConfig({
 			.map((f) => {
 				let provider;
 				switch (f.provider) {
-					case "google": provider = fontProviders.google(); break;
-					case "fontsource": provider = fontProviders.fontsource(); break;
-					case "local": provider = fontProviders.local(); break;
-					case "bunny": provider = fontProviders.bunny(); break;
-					case "fontshare": provider = fontProviders.fontshare(); break;
-					case "npm": provider = fontProviders.npm(); break;
-					default: provider = f.provider;
+					case "google":
+						provider = fontProviders.google();
+						break;
+					case "fontsource":
+						provider = fontProviders.fontsource();
+						break;
+					case "local":
+						provider = fontProviders.local();
+						break;
+					case "bunny":
+						provider = fontProviders.bunny();
+						break;
+					case "fontshare":
+						provider = fontProviders.fontshare();
+						break;
+					case "npm":
+						provider = fontProviders.npm();
+						break;
+					default:
+						provider = f.provider;
 				}
 				return { ...f, provider };
 			});
@@ -227,7 +246,8 @@ export default defineConfig({
 	markdown: {
 		processor: unified({
 			remarkPlugins: [
-				...(siteConfig.post.rehypeCallouts.enablePythonMarkdownAdmonitions !== false
+				...(siteConfig.post.rehypeCallouts.enablePythonMarkdownAdmonitions !==
+				false
 					? [remarkAdmonitionToBlockquoteCallout]
 					: []),
 				remarkMath,
@@ -323,4 +343,3 @@ export default defineConfig({
 		},
 	},
 });
-
