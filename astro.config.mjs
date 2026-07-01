@@ -51,6 +51,9 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 if (process.env.NODE_ENV === "development") {
 	setMaxListeners(20);
 }
+// 自动区分部署环境，切换根路径
+const isGithubPages = process.env.GITHUB_ACTIONS === "true";
+const basePath = isGithubPages ? "/Firefly/" : "/";
 
 const adapter = process.env.CF_WORKERS
 	? cloudflare({
@@ -62,7 +65,7 @@ const adapter = process.env.CF_WORKERS
 export default defineConfig({
 	site: siteConfig.site_url,
 
-	base: "/Firefly",
+	base: basePath,
 	trailingSlash: "always",
 
 	// 字体配置 - 只加载实际使用的字体，跳过未引用的以加快构建
