@@ -1,8 +1,9 @@
 name = "firefly"
-compatibility_date = "2026-06-30" # 更为今日
+compatibility_date = "2026-07-01"
 
-[assets]
-directory = "./dist"
+# Pages 打包输出目录，关键配置
+pages_build_output_dir = "dist"
 
+# 构建环境 Node 版本
 [vars]
 NODE_VERSION = "22"
